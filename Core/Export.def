@@ -1,0 +1,18 @@
+LIBRARY
+
+EXPORTS
+SetAssembly
+WaitForLoadAssembly
+LoadAssembly
+
+FindFunction
+HookFunction
+UnHookFunction
+CreateProcessWithDll
+CreateRemoteThreadWithDll
+
+HookWindow
+UnHookWindow
+
+SECTIONS
+SHAREDDATA Read Write Shared
