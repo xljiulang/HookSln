@@ -2,16 +2,17 @@
 #include <detours.h>
 #include <windows.h>
 
-BOOL WINAPI CreateProcessWithDll (LPSTR fileName, LPSTR argument, LPSTR dllName)  
+BOOL WINAPI CreateProcessWithDll (LPSTR fileName, LPSTR argument,LPCSTR workdir, LPCSTR dllName)  
 {      
 	STARTUPINFO si;     
 	PROCESS_INFORMATION pi;  
 	ZeroMemory(&si, sizeof(STARTUPINFO));     
 	ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));     
-	si.cb = sizeof(STARTUPINFO);  
-	BOOL state = DetourCreateProcessWithDll(fileName,argument,NULL,NULL,FALSE,CREATE_DEFAULT_ERROR_MODE,NULL,NULL,&si, &pi,dllName,NULL);	
+	si.cb = sizeof(STARTUPINFO);   
+	BOOL state = DetourCreateProcessWithDll(fileName,argument,NULL,NULL,FALSE,CREATE_DEFAULT_ERROR_MODE,NULL,workdir,&si, &pi,dllName,NULL);	
 	return state;	
 }  
+
 
 
 typedef DWORD (WINAPI *PFNTCREATETHREADEX)  

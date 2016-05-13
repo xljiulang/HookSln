@@ -25,11 +25,12 @@ namespace CoreNet
         /// </summary>
         /// <param name="fileName">进程文件名</param>
         /// <param name="argument">启动参数</param>
+        /// <param name="workDir">工作路径</param>
         /// <param name="assembly">程序集路径</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="FileNotFoundException"></exception>
         /// <returns></returns>
-        public static bool InjectToProcess(string fileName, string argument, string assembly)
+        public static bool InjectToProcess(string fileName, string argument, string workDir, string assembly)
         {
             if (fileName == null)
             {
@@ -60,7 +61,7 @@ namespace CoreNet
             lock (Inject.SyncRoot)
             {
                 Extern.SetAssembly(Path.GetFullPath(assembly));
-                if (Extern.CreateProcessWithDll(fileName, argument, Path.GetFullPath(mainDll)))
+                if (Extern.CreateProcessWithDll(fileName, argument, workDir, Path.GetFullPath(mainDll)))
                 {
                     Extern.WaitForLoadAssembly(MaxWaitTime);
                     return true;

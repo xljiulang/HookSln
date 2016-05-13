@@ -29,8 +29,8 @@ namespace HookMessageBoxW
         /// </summary>
         /// <param name="args"></param>
         public static void Main(string[] args)
-        {            
-            messageBoxW = Hook.HookApi<MessageBoxW>("user32.dll", "MessageBoxW", MessageBoxW_Proxy);            
+        {
+            Hook.HookApi<MessageBoxW>("user32.dll", "MessageBoxW", MessageBoxW_Proxy);
         }
 
         private static int MessageBoxW_Proxy(IntPtr hwnd, string text, string caption, int type)

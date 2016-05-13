@@ -58,10 +58,11 @@ namespace CoreNet
         /// </summary>
         /// <param name="fileName">进程文件名</param>
         /// <param name="argument">启动参数</param>
+        /// <param name="workDir">工作目录</param>
         /// <param name="dllName">要注入的dll名</param>
         /// <returns></returns>
         [DllImport("Core.dll")]
-        public static extern bool CreateProcessWithDll(string fileName, string argument, string dllName);
+        public static extern bool CreateProcessWithDll(string fileName, string argument, string workDir, string dllName);
 
         /// <summary>
         /// 创建远程线程并注入
